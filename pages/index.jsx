@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import {IoMdAdd} from 'react-icons/io'
 import {MdNotificationsActive} from 'react-icons/md'
-
+import Link from 'next/link'
 
 const data = [
   {
@@ -46,10 +46,10 @@ export default function Home() {
        <MdNotificationsActive className="text-xl" />
        Notifications
     </a>
-    <a type="submit" href='/addmap' className="inline-flex items-center h-fit mt-6 py-2.5 px-3 ml-2 text-sm font-medium text-white bg-emerald-700 rounded-lg border border-emerald-700 hover:bg-emerald-800 ">
+    <Link type="submit" href='/addmap' className="inline-flex items-center h-fit mt-6 py-2.5 px-3 ml-2 text-sm font-medium text-white bg-emerald-700 rounded-lg border border-emerald-700 hover:bg-emerald-800 ">
         <IoMdAdd className='text-xl' />
         Add New Map
-    </a>
+    </Link>
     </div>
     </div>
     
