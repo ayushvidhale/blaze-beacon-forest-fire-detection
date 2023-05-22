@@ -423,7 +423,8 @@ export default function VIT() {
                   Device 1 - [Online]
                 </h3>
                 <button
-                  type="button"
+                  type="button" data-modal-target="modalEl"
+                  data-modal-toggle="modalEl"
                   class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center  "
                 >
                   <svg
@@ -483,7 +484,8 @@ export default function VIT() {
                   Device - [Currently offline]
                 </h3>
                 <button
-                  type="button"
+                  type="button" data-modal-target="modalEl2"
+                  data-modal-toggle="modalEl2"
                   class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center "
                 >
                   <svg
@@ -528,7 +530,8 @@ export default function VIT() {
                   Send Response Team
                 </h3>
                 <button
-                  type="button"
+                  type="button" data-modal-target="modalEl3"
+                  data-modal-toggle="modalEl3"
                   class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center "
                 >
                   <svg
@@ -601,7 +604,8 @@ export default function VIT() {
                   Fire Detected on Device 1
                 </h3>
                 <button
-                  type="button"
+                  type="button" data-modal-target="modalEl4"
+                  data-modal-toggle="modalEl4"
                   class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center "
                 >
                   <svg
