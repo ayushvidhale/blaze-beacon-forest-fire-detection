@@ -78,11 +78,32 @@ export default function VIT() {
     };
 
     const modal3 = new Modal($modalElement3, modalOptions3);
+
+  const $modalElement4 = document.querySelector("#modalEl");
+
+    const modalOptions4 = {
+      placement: "bottom-right",
+      backdrop: "dynamic",
+      backdropClasses:
+        "bg-gray-900 bg-opacity-50 bg-opacity-80 fixed inset-0 z-40",
+      closable: true,
+      onHide: () => {
+        console.log("modal is hidden");
+      },
+      onShow: () => {
+        console.log("modal is shown");
+      },
+      onToggle: () => {
+        console.log("modal has been toggled");
+      },
+    };
+
+    const modal4 = new Modal($modalElement4, modalOptions4);
   }, []);
 
   const callTeam = () => {
     axios
-      .post("http://localhost:5000/api/callTeam")
+      .post("https://maker.ifttt.com/trigger/fire_call/with/key/elX-jFqbsqbWjexR9f5A-D78v9fuO_NBjKg6rodK_Ow")
       .then((res) => {
          console.log(res);
       })
@@ -126,8 +147,46 @@ export default function VIT() {
        });
   };
 
+  const fireButton = () => {
+    axios
+      .post("http://localhost:5000/api/fireButton") 
+      .then((res) => {
+
+          console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    }
+
+    const mailResponseTeam = () => {
+      axios
+      .post(
+        "https://maker.ifttt.com/trigger/fire/with/key/elX-jFqbsqbWjexR9f5A-D78v9fuO_NBjKg6rodK_Ow"
+      )
+      .then((res) => {
+         console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+      toast.success("🔮 Mail Sent", {
+         position: "top-right",
+         autoClose: 5000,
+         hideProgressBar: false,
+         closeOnClick: true,
+         pauseOnHover: true,
+         draggable: true,
+         progress: undefined,
+         theme: "dark",
+       });
+    }
+
   return (
     <>
+    
+
       <button
         data-drawer-target="sidebar-multi-level-sidebar"
         data-drawer-toggle="sidebar-multi-level-sidebar"
@@ -221,6 +280,7 @@ export default function VIT() {
                   4
                 </span>
               </a>
+              
             </li>
             <li>
               <a
@@ -337,14 +397,19 @@ export default function VIT() {
       </aside>
 
       <div class="p-4 sm:ml-64">
-        <div class=" border-2 border-gray-200 border-dashed rounded-lg :border-gray-700">
+        <div class="relative border-2 border-gray-200 border-dashed rounded-lg :border-gray-700">
           <img
             src="/vit.jpeg"
             alt=""
             className="rounded-xl border-gray-700 border w-full"
           />
+          <button data-modal-target="modalEl4"
+                  data-modal-toggle="modalEl4" class=" absolute inset-0 -translate-y-96 top-0 -translate-x-80 flex items-center justify-center ">
+    <img class="w-10 h-10 rounded" src="https://cdn-icons-png.flaticon.com/512/599/599502.png" className="bg-gray-500 animate-bounce focus:ring-8 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 focus:outline-1 w-12 h-12 rounded-xl" alt=""/>
+    <span class="absolute top-0 left-8 transform -translate-y-1/2 w-3.5 h-3.5 bg-red-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
+</button>
         </div>
-        <Map address={address} />
+        {/* <Map address={address} /> */}
         <div
           id="modalEl"
           tabindex="-1"
@@ -481,6 +546,16 @@ export default function VIT() {
                 </button>
               </div>
               <div class="p-6 space-y-6">
+
+              <button
+                  onClick={sendAlert} data-modal-target="modalEl3"
+                  data-modal-toggle="modalEl3"
+                  class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white  focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
+                >
+                  <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white  rounded-md group-hover:bg-opacity-0">
+                    Send Alert
+                  </span>
+                </button>
                 <button
                   onClick={callTeam} data-modal-target="modalEl3"
                   data-modal-toggle="modalEl3"
@@ -491,13 +566,92 @@ export default function VIT() {
                   </span>
                 </button>
 
+                
+
+
                 <button
-                  onClick={sendAlert} data-modal-target="modalEl3"
+                  onClick={mailResponseTeam} data-modal-target="modalEl3"
                   data-modal-toggle="modalEl3"
+                  class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-red-500 to-pink-500 group-hover:from-red-500 group-hover:to-pink-500 hover:text-white  focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-red-800"
+                >
+                  <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white  rounded-md group-hover:bg-opacity-0">
+                    Mail Response Team
+                  </span>
+                </button>
+              </div>
+
+              {/* <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b border-gray-600">
+                <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800">I accept</button>
+                <button type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 bg-gray-700 text-gray-300 border-gray-500 hover:text-white hover:bg-gray-600">Decline</button>
+            </div> */}
+            </div>
+          </div>
+        </div>
+
+        <div
+          id="modalEl4"
+          tabindex="-1"
+          aria-hidden="true"
+          class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
+        >
+          <div class="relative w-full max-w-2xl max-h-full">
+            <div class="relative bg-white rounded-lg shadow ">
+              <div class="flex items-start justify-between p-5 border-b rounded-t border-gray-600">
+                <h3 class="text-xl font-semibold text-gray-900 lg:text-2xl ">
+                  Fire Detected on Device 1
+                </h3>
+                <button
+                  type="button"
+                  class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center "
+                >
+                  <svg
+                    class="w-5 h-5"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="p-6 space-y-6">
+
+
+              <button
+                  onClick={sendAlert} data-modal-target="modalEl4"
+                  data-modal-toggle="modalEl4"
                   class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white  focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
                 >
                   <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white  rounded-md group-hover:bg-opacity-0">
                     Send Alert
+                  </span>
+                </button>
+
+
+
+                <button
+                  onClick={callTeam} data-modal-target="modalEl4"
+                  data-modal-toggle="modalEl4"
+                  class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white  focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
+                >
+                  <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white  rounded-md group-hover:bg-opacity-0">
+                    Call Response Team
+                  </span>
+                </button>
+
+                
+
+                <button
+                  onClick={mailResponseTeam} data-modal-target="modalEl4"
+                  data-modal-toggle="modalEl4"
+                  class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-red-500 to-pink-500 group-hover:from-red-500 group-hover:to-pink-500 hover:text-white  focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-red-800"
+                >
+                  <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white  rounded-md group-hover:bg-opacity-0">
+                    Mail Response Team
                   </span>
                 </button>
               </div>
