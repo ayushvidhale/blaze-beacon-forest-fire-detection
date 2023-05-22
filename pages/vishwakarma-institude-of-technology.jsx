@@ -406,7 +406,7 @@ export default function VIT() {
             className="rounded-xl border-gray-700 border w-full"
           />
           <button data-modal-target="modalEl4"
-                  data-modal-toggle="modalEl4" class=" absolute inset-0 animate-bounce -translate-y-96 top-0 -translate-x-80 flex items-center justify-center ">
+                  data-modal-toggle="modalEl4" class=" absolute inset-0 -translate-y-96 top-0 -translate-x-80 flex items-center justify-center ">
     <img class="w-10 h-10 rounded" src="https://cdn-icons-png.flaticon.com/512/599/599502.png" className="bg-gray-500 animate-bounce focus:ring-8 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 focus:outline-1 w-12 h-12 rounded-xl" alt=""/>
     <span class="absolute top-0 left-8 transform -translate-y-1/2 w-3.5 h-3.5 bg-red-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
 </button>
