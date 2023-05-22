@@ -103,7 +103,9 @@ export default function VIT() {
 
   const callTeam = () => {
     axios
-      .post("https://maker.ifttt.com/trigger/fire_call/with/key/elX-jFqbsqbWjexR9f5A-D78v9fuO_NBjKg6rodK_Ow")
+      .post(
+        "https://maker.ifttt.com/trigger/fire_call/with/key/elX-jFqbsqbWjexR9f5A-D78v9fuO_NBjKg6rodK_Ow"
+      )
       .then((res) => {
          console.log(res);
       })
